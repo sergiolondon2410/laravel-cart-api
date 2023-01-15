@@ -1,0 +1,10 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Morsum Cart API
+  description: API that gets items info
+
+servers:
+  - url: http://localhost/v1
+
+paths:
