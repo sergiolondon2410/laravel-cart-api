@@ -28,7 +28,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         Item::create($request->all());
-        return redirect()->route('carts.show', ['id' => $request->cart_id]);
+        return $request;
     }
 
     /**

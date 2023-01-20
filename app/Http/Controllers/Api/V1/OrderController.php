@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Item;
+use App\Services\Order\StoreOrderService;
 
 class OrderController extends Controller
 {
+
+    private $storeOrderService;
+
+    public function __construct(StoreOrderService $storeOrderService)
+    {
+        $this->storeOrderService = $storeOrderService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,32 +36,12 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $order = Order::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'address' => $request->address,
-            'state' => $request->state,
-            'city' => $request->city,
-            'zipcode' => $request->zipcode,
-        ]);
-
-        $items_array = json_decode($request->items, true);
-        $type = gettype($items_array);
-
-        // foreach ($items_array as $item) {
-            Item::create([
-                'order_id' => $order->id,
-                'product_id' => $items_array["product_id"],
-                'product_title' => $items_array["product_title"],
-                'product_price' => $items_array["product_price"],
-                'quantity' => $items_array["quantity"],
-            ]);
-        // }
-
+        $data = $request->all();
+        $response = $this->storeOrderService->create($data);
         return response()->json([
             'status' => true,
             'message' => " Created successfully!",
-            'order' => $type
+            'total' => $response
         ], 200);
     }
 
