@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('v1/carts', App\Http\Controllers\Api\V1\CartController::class)
+    ->only('show');
+
+Route::apiResource('v1/items', App\Http\Controllers\Api\V1\ItemController::class);
+
+//Route::apiResource('v1/products', App\Http\Controllers\Api\V1\ProductController::class)->only(['index', 'show']);
+
+Route::get('v1/products', [App\Http\Controllers\Api\V1\ProductController::class, 'index'])->name('products.index');
+Route::get('v1/products/{$id}', [App\Http\Controllers\Api\V1\ProductController::class, 'show'])->name('products.show');
+Route::post('v1/products/add', [App\Http\Controllers\Api\V1\ProductController::class, 'addItem'])->name('products.add');
+
+Route::post('v1/orders', [App\Http\Controllers\Api\V1\OrderController::class, 'store'])->name('orders.store');
