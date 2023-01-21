@@ -27,16 +27,16 @@ class StoreItemService
     public function create($order_id, $data){
 
         $product = $this->getProductService->get($data["product_id"]);
-        
+        $price_cents = price_on_cents($product["price"]);
         $item = Item::create([
             'order_id' => $order_id,
             'product_id' => $data["product_id"],
             'product_title' => $product["title"],
-            'product_price' => $product["price"] * 100,
+            'product_price' => $price_cents,
             'quantity' => $data["quantity"],
         ]);
         
-        $subtotal = $data["quantity"] * $product["price"] * 100;
+        $subtotal = $data["quantity"] * $price_cents;
 
         return $subtotal;
     }
