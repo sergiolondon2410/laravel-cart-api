@@ -40,8 +40,7 @@ class OrderController extends Controller
         $response = $this->storeOrderService->create($data);
         return response()->json([
             'status' => true,
-            'message' => " Created successfully!",
-            'total' => $response
+            'message' => "Order was created successfully!"
         ], 200);
     }
 

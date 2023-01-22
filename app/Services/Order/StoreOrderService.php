@@ -23,7 +23,7 @@ class StoreOrderService
             'zipcode' => $data["zipcode"],
         ]);
         $item_data = json_decode($data["items"], true);
-        $total = $this->storeItemService->storeItems($order->id,$item_data);
+        $total = $this->storeItemService->storeItems($order->id, $item_data);
         $order->total = $total;
         $order->save();
         return $total;
