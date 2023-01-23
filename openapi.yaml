@@ -11,22 +11,126 @@ tags:
   - name: Products
     description: Operations with products
 
-
 paths:
+
   /products:
     summary: Operations with products
     get:
       tags:
         - product
       summary: get all the products
+      description: Send a json object with all the available products
       responses:
         200:
           description: Success
           content: 
             application/json:
-        400:
-          description: Incorrect input
-        default:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    description: status of the transaction
+                  message:
+                    type: string
+                    description: Text which describes the result of the request
+                    products:
+                      type: array
+                      description: Array with the information of all the available products
+                      minItems: 1
+                      maxItems: 20
+                      -
+                        id:
+                          type: integer
+                          description: Identifier of each product
+                        title:
+                          type: string
+                          description: Name of the product
+                        price:
+                          type: float
+                          description: Cost of one unity of the product, maximum two decimals
+                        description:
+                          type: string
+                          description: Text to know more about the product
+                        category:
+                          type: string
+                        image:
+                          type: string
+                          description: url to access an image resource of the product
+                        rating:
+                          type: array
+                          -
+                            rate:
+                              type: float
+                            count:
+                              type: integer
+
+  #  ---------------------------------------------
+
+  /orders:
+    summary: Create a new order
+    post:
+      tags:
+        - Orders
+      summary: store an order
+      description: Get all the info and items from the cart to create a new order
+      parameters:
+        - name: name
+          in: formData
+          description: Fullname of the customer
+          schema:
+            type: string
+        - name: email
+          in: formData
+          description: Email address of the customer
+          schema:
+            type: string
+        - name: address
+          in: formData
+          description: The location where the purchase must be sent
+          schema:
+            type: string
+        - name: state
+          in: formData
+          description: State where the address is located
+          schema:
+            type: string
+        - name: city
+          in: formData
+          description: City where the address is located
+          schema:
+            type: string
+        - name: zipcode
+          in: formData
+          description: Zip code which the purchase must be sent
+          schema:
+            type: string
+        - name: items
+          in: formData
+          description: array with the info of each item
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                product_id:
+                  type: float
+                quantity:
+                  type: integer
+      responses:
+        200:
           description: Success
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    description: status of the transaction
+                  message:
+                    type: string
+                    description: Text which describes the result of the request
+
         
 
