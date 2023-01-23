@@ -16,7 +16,7 @@ class ProductControllerTest extends TestCase
     public function testGetProductsEndpoint()
     {
         $response = $this->get('/api/v1/product/');
-
+        dd($response->json());
         $response->assertStatus(200)
             ->assertJsonStructure(
                 [

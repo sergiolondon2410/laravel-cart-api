@@ -16,11 +16,12 @@ class OrderControllerTest extends TestCase
     public function testCreateOrderEndpoint()
     {
         $payload = [
+            'name' => 'John Test',
             'email' => 'test@email.com',
             'address' => 'Test address',
-            'state' => '',
-            'city' => '',
-            'zipcode' => '',
+            'state' => 'California',
+            'city' => 'Pasadena',
+            'zipcode' => '91001',
             'items' => [
                 ['product_id' => 3, 'quantity' => 2],
                 ['product_id' => 4, 'quantity' => 1]

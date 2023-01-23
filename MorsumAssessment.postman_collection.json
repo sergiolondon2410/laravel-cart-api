@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "c49f7c99-166c-4bdd-9255-20d39719bc11",
+		"name": "Morsum assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7557727"
+	},
+	"item": [
+		{
+			"name": "Store Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Lea Doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "l@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "5 street",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Massachusetts",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Boston",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "02120",
+							"type": "text"
+						},
+						{
+							"key": "items",
+							"value": "[{\"product_id\":7,\"quantity\":1},{\"product_id\":17,\"quantity\":2}]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product LIst",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
